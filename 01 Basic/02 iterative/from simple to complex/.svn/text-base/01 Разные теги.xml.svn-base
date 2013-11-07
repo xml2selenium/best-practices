@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase name="Использование разных тегов" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  description="Написание простого теста с использованием разных тегов" 
+		  tags="Basic, итеративные, от простого к сложному">
+		  
+	<test coverage="100" name="01 Простой тест" 
+		  description="Заполняем форму регистрации, переходим на другую страницу и проверяем присутствие элементов. для Иванова" 
+	      tags="navigate, webelement, button, field">
+		<navigate to="http://localhost:${jetty.port}/test/test/registration.htm"/>
+		
+		<field id="fieldName" textToType="Ivanov"/>
+		<field id="fieldPassword" textToType="password"/>
+		<field id="fieldConfirmPassword" textToType="password"/>
+		<field id="fieldEmail" textToType="email@email.com"/>
+		
+		<button id="regButton"/>
+		<webelement id="message" text="SUCCESS" action="isContainsText"/>
+		
+		<webelement xpath="//div[@id='menu']" action="isExists"/>
+		<webelement xpath="//div[@id='righter']" action="isExists"/>
+	</test>	  
+	
+	<test coverage="100" name="02 Простой тест" 
+	      description="Заполняем форму регистрации, переходим на другую страницу и проверяем присутствие элементов. для Петрова"
+	      tags="navigate, webelement, button, field">
+		<navigate to="http://localhost:${jetty.port}/test/test/registration.htm"/>
+		
+		<field id="fieldName" textToType="Petrov"/>
+		<field id="fieldPassword" textToType="password"/>
+		<field id="fieldConfirmPassword" textToType="password"/>
+		<field id="fieldEmail" textToType="email@email.com"/>
+		
+		<button xpath="//input[@id='regButton']"/>
+		<webelement id="message" text="SUCCESS" action="isContainsText"/>
+			
+		<webelement xpath="//div[@id='menu']" action="isExists"/>
+		<webelement xpath="//div[@id='righter']" action="isExists"/>
+	</test>
+</testcase>	

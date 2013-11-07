@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase name="переводчик" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  description="Переводим введенную фразу с помощью google переводчика, и прослушиваем ее" 	
+		  tags="Basic, популярные сервисы">
+		  
+	<test coverage="100" name="Перевод фразы" 
+		  description="Устанавливаем язык для введенной фразы и язык для перевода. Вводим фразу, переводим, проверяем ожидаемый перевод с фактическим. Прослушиваем фразу." 
+		  tags="google-переводчик, navigate, webelement, field, button, pause" >
+		<navigate to="http://translate.google.com/?hl=en"/>
+        <pause time="2000"/>
+        
+        <!-- устанавливаем английский язык -->
+        <webelement id="gt-sl-gms" action="click"/>
+        <pause time="2000"/> 
+        <webelement id=":j" action="click"/>
+        <webelement xpath="//div[@id='gt-sl-sugg']/div[@aria-pressed='true'][@value='en']"
+        		 	action="isContainsText" text="English"/>
+        
+        <!-- устанавливаем русский язык -->
+        <webelement id="gt-tl-gms" action="click"/>
+        <pause time="2000"/> 
+        <webelement id=":3l" action="click"/>
+        <webelement xpath="//div[@id='gt-tl-sugg']/div[@aria-pressed='true'][@value='ru']" 
+        			action="isContainsText" text="Russian"/>
+        
+        <!-- вводим и переводим фразу -->
+        <field id="source" textToType="Hello, world"/>
+        <button id="gt-ft-res"/>
+        <webelement xpath="//span[@id='result_box']/span" action="isContainsText" text="Привет, мир"/>
+        
+        <webelement xpath="//div[@id='gt-res-listen']/span" action="click"/>
+        <pause time="2000"/>
+	</test>	  
+		 
+</testcase>	

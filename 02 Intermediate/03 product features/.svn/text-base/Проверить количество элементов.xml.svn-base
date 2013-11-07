@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase name="количество элементов на странице" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  description="Проверяем что количество элеменов на странице" 	
+		  tags="Intermediate, фичи продукта, количество элементов">
+		  	  
+	<test coverage="100" name="01 Количество элементов" 
+		  description="Через xpath селектор проверяем, что количество строк на странице, равно 24" 
+		  tags="navigate, webelement, assert, size">
+		<navigate to="http://localhost:${jetty.port}/test/test/pageWithTable.htm"/>
+		
+		<webelement ref="element" xpath="//*[@id='mainTable']//tr/td[2]"/>
+		<assert action="size" first="element" second="24"/>
+	</test>
+</testcase>

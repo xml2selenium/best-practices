@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase name="import и property" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		  description="В тесткейсе, данные для заполнения форм регистрации и проверки элемента после регистрации вынесены в import файл. Текст отображающийся после подтверждения регистрации в property файл" 
+		  tags="Basic, итеративные, от простого к сложному, before"> 
+	
+	<import resource="ImportFile.xml" name="import"/>
+	<property resource="PropertyFile.property" name="property"/>
+		  
+	<before>
+		<navigate to="http://localhost:${jetty.port}/test/test/registration.htm"/>
+	</before>	  
+		  
+	<test coverage="100" name="0 Простой тест" 
+		  description="Заполняем форму регистрации с использованием import, property. для Иванова"
+		  tags="variable, frame, webelement, import, property">
+		
+		<variable ref="confirmPassword" value="password"/>
+		<variable ref="userName" value="Ivanov"/>  
+		
+		<frame extends="import:заполнение формы регистрации"/>
+		<frame extends="import:проверка элементов после регистрации"/>
+		<webelement id="message" text="${property.textSuccess}" action="isContainsText"/>
+	</test>	  
+	
+	<test coverage="100" name="02 Простой тест" 
+		  description="Заполняем форму регистрации с использованием import property. для Петрова"
+		  tags="variable, frame, webelement, import, property">
+		
+		<variable ref="confirmPassword" value="password"/>
+		<variable ref="userName" value="Petrov"/>  
+		  
+		<frame extends="import:заполнение формы регистрации"/>
+		<frame extends="import:проверка элементов после регистрации"/>
+		<webelement id="message" text="${property.textSuccess}" action="isContainsText"/>
+	</test>	  
+</testcase>	

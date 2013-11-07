@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase name="c использованием before_after" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  description="Данные для открытия страницы, ввода логина и пароля и подтверждения введенных данных, заносятся в тег before и выполняются перед каждым тестом. Данные для разлогирования заносятся в тег after и выполняются после каждого теста " 
+		  tags="Basic, итеративные, before/after">
+
+	<before>
+		<navigate to="http://localhost:${jetty.port}/test/test/registration.htm"/>
+		
+		<field id="login" textToType="smth_login"/>
+		<field id="pass" textToType="smth_password"/>
+		
+		<button id="submit"/>
+	</before>
+		  
+	<test coverage="100" name="01 Проверка блока menu" description="Переходим на страницу регистрации, вводим логин и пароль, и проверяем присутствие блока menu. Разлогинились" 
+	      tags="webelement">
+		
+		<webelement id="menu" action="isExists"/>
+		
+	</test>	  
+	
+	<test coverage="100" name="02 Проверка блока form" 
+	      description="Переходим на страницу регистрации, вводим логин и пароль, и проверяем присутствие блока form. Разлогинились"
+	      tags="webelement">
+		
+		<webelement xpath="//*[@id='mainBody']//form" action="isExists"/>
+		
+	</test>
+	
+	<test coverage="100" name="03 Проверка блока footer" 
+	      description="Переходим на страницу регистрации, вводим логин и пароль, и проверяем присутствие блока footer. Разлогинились"
+	      tags="webelement">
+		
+		<webelement id="footer" action="isExists"/>
+		
+	</test>
+	
+	<after>
+		<webelement xpath="//a[@class='logout']" action="click"/>
+		<webelement id="message" action="isContainsText" text="BYE-BYE!!!"/>
+	</after>
+</testcase>	

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase name="покрытие тестов" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  tags="Basic, фичи продукта, coverage" description="С помощью атрибута coverage, отображается степень покрытия теста">
+		  
+	<test coverage="30" name="01 Сoverage_30" 
+		  description="Выполняем тест на 30%, и выставляем значение атрибуту coverage - 30" 
+		  tags="coverage, navigate, webelement, button">
+		<navigate to="http://localhost:${jetty.port}/test/test/registration.htm"/>
+		
+		<field id="fieldName" textToType="Dmitry"/>
+		<field id="fieldPassword" textToType="X"/>
+	</test>	  
+	
+	<test coverage="60" name="02 Сoverage_60" 
+		  description="Выполняем тест на 60%, и выставляем значение атрибуту coverage - 60" 
+		  tags="coverage, navigate, webelement, button">
+		<navigate to="http://localhost:${jetty.port}/test/test/pageWithTable.htm"/>
+		<webelement xpath="//table[@id='mainTable']//tr[2]/td[3]" action="getText" returnValueName="price1"/>
+		<webelement xpath="//table[@id='mainTable']//tr[3]/td[3]" action="getText" returnValueName="price2"/>
+		<assert action="equals" first="${price1}" second="${price2}"/>
+			
+		<webelement xpath="//table[@id='mainTable']//tr[12]/td[3]" action="getText" returnValueName="price3"/>
+		<webelement xpath="//table[@id='mainTable']//tr[21]/td[3]" action="getText" returnValueName="price4"/>
+		<assert action="equals" first="${price3}" second="${price4}"/>
+		
+		<webelement xpath="//table[@id='mainTable']//tr[17]/td[3]" action="getText" returnValueName="price5"/>
+		<webelement xpath="//table[@id='mainTable']//tr[20]/td[3]" action="getText" returnValueName="price6"/>
+		<assert action="equals" first="${price5}" second="${price6}"/>
+		
+	</test>	  
+	
+	<test coverage="90" name="03 Сoverage_90" 
+		  description="Выполняем тест на 90%, и выставляем значение атрибуту coverage - 90" 
+		  tags="coverage, navigate, webelement, button">
+		<navigate to="http://localhost:${jetty.port}/test/test/pageWithTable.htm"/>
+		
+		<webelement xpath="//table[@id='mainTable']//tr[2]/td[2]" action="getText" returnValueName="description1"/>
+		<field id="sendMailText" textToType="${description1}"/>
+		
+		<webelement xpath="//table[@id='mainTable']//tr[5]/td[2]" action="getText" returnValueName="description2"/>
+		<field id="sendMailText" textToType="${description2}"/>
+		
+		<webelement xpath="//table[@id='mainTable']//tr[7]/td[2]" action="getText" returnValueName="description3"/>
+		<field id="sendMailText" textToType="${description3}"/>
+		
+		<webelement xpath="//table[@id='mainTable']//tr[10]/td[2]" action="getText" returnValueName="description4"/>
+		<field id="sendMailText" textToType="${description4}"/>
+		
+		<webelement xpath="//table[@id='mainTable']//tr[6]/td[2]" action="getText" returnValueName="description5"/>
+		<field id="sendMailText" textToType="${description5}"/>
+		
+		<webelement xpath="//table[@id='mainTable']//tr[13]/td[2]" action="getText" returnValueName="description6"/>
+		<field id="sendMailText" textToType="${description6}"/>
+		
+		<webelement xpath="//table[@id='mainTable']//tr[18]/td[2]" action="getText" returnValueName="description7"/>
+		<field id="sendMailText" textToType="${description7}"/>
+		
+		<webelement xpath="//table[@id='mainTable']//tr[20]/td[2]" action="getText" returnValueName="description8"/>
+		<field id="sendMailText" textToType="${description8}"/>
+		
+		<webelement xpath="//table[@id='mainTable']//tr[15]/td[2]" action="getText" returnValueName="description9"/>
+		<field id="sendMailText" textToType="${description9}"/>
+	</test>	  
+</testcase>	

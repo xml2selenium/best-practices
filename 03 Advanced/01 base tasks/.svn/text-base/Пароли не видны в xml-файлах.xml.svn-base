@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase name="пароли не в workspace" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  description="Файл, в котором зашиты пароли, располагаестся не в workspace." 	
+		  tags="Advanced, базовые задачи">
+		
+	<property resource="${x2s.pathTopass}" name="property"/>	
+		  
+	<test coverage="100" name="01 Admin" 
+		  description="Заходим от имени admin, и проверяем, что на сайт вошел admin" 
+		  tags="navigate, webelement, field, button, pause" >	
+		  
+		<navigate to="http://xml2selenium.com/demowp/"/>
+		<webelement xpath="//*[@id='meta-2']//a[@href='http://xml2selenium.com/demowp/wp-login.php']" action="click"/>
+		
+		<field id="user_login" textToType="${property.admin}"/>
+		<field id="user_pass" textToType="${property.passAdmin}"/>
+		<button id="wp-submit"/>
+		<pause time="2000"/>
+		
+		<webelement xpath="//li[@id='wp-admin-bar-my-account']/a" action="isContainsText" text="admin"/>	
+		
+		<!-- logout -->
+		<webelement xpath="//a[@title='My Account']" action="mouseMove"/>
+		<webelement xpath="//li[@id='wp-admin-bar-logout']/a" action="click"/>  
+	</test>
+</testcase>	

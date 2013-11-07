@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase name="настройки youtube" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  description="Изменить настройки youtube" 	
+		  tags="Basic, популярные сервисы">
+		  
+	<test coverage="100" name="01 YouTube" 
+		  description="Меняем настройки, язык, страну, безопасность" 
+		  tags="youtube, navigate, webelement, button, assert, radio" >
+		<navigate to="http://www.youtube.com/"/>
+		
+		<!-- language -->
+		<button id="yt-picker-language-button"/>
+		<pause time="3000"/>
+		<webelement xpath="//button[@value='en-GB']" action="click"/>
+		<pause time="3000"/>
+		<webelement xpath="//*[@id='masthead-upload-button-group']/a/span" action="getText" returnValueName="englishText"/>
+		
+		<assert action="equals" first="Upload" second="${englishText}"/>
+		
+		<!-- country -->
+		<button id='yt-picker-country-button'/>
+		<pause time="3000"/>
+		<webelement id="flag_RUS" action="click"/>
+		<pause time="3000"/>
+		<webelement xpath="//button[@id='yt-picker-country-button']/span" action="getText" returnValueName="country"/>
+		
+		<assert action="equals" first="Country: Russia" second="${country}"/>
+		
+		<!-- safety -->
+		<button id='yt-picker-safetymode-button'/>
+		<radio id="safety-mode-on" action="click"/>
+		<webelement xpath="//*[@id='safety-form']//button[@role='button']" action="click"/>
+		<webelement xpath="//*[@id='confirmBox']//div[@class='yt-alert-message']" action="getText" returnValueName="safety"/>
+		
+		<assert action="equals" first="Safety Mode enabled successfully" second="${safety}"/>         
+	</test>	  
+</testcase>	

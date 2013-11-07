@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase name="groovy в xpath" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  description="В тесткейсе демонстрируем, работу с передачей параметров в xpath и без передачи параметров в xpath" 	
+		  tags="Intermediate, итеративные, groovy в xpath">
+		  
+	<test coverage="100" name="01 Без использования groovy в xpath" 
+		  description="Работаем с xpaht элементов без использования groovy в xpath" 
+		  tags="navigate, webelement, field" >
+		
+		<navigate to="http://localhost:${jetty.port}/test/test/pageWithTable.htm"/>
+		<webelement xpath="//*[@id='mainTable']/tbody/tr[4]/td[3]" action="getText" returnValueName="price1"/>
+		<webelement xpath="//*[@id='mainTable']/tbody/tr[5]/td[3]" action="getText" returnValueName="price2"/>
+		<field id="sendMailText" textToType="${price1}"/>
+		<field id="sendMailText" textToType="${price2}"/>
+		
+		<webelement xpath="//*[@id='mainTable']/tbody/tr[16]/td[3]" action="getText" returnValueName="price3"/>
+		<webelement xpath="//*[@id='mainTable']/tbody/tr[17]/td[3]" action="getText" returnValueName="price4"/>
+		<field id="sendMailText" textToType="${price3}"/>
+		<field id="sendMailText" textToType="${price4}"/>
+	</test>
+	
+	<test coverage="100" name="02 С использование groovy в xpath" 
+		  description="С помощью тега variable, в xpath передаем переменную с нужным значением" 
+		  tags="navigate, webelement, field, frame, xpath, groovy, variable" >
+		
+		<navigate to="http://localhost:${jetty.port}/test/test/pageWithTable.htm"/>
+				
+		<frame ref="inputText">
+			<variable ref="number_tr" value="5"/>
+			<webelement ref="getText" xpath="//*[@id='mainTable']/tbody/tr[${number_tr}]/td[3]" action="getText" returnValueName="price"/>
+			<field id="sendMailText" textToType="${price}"/>
+		</frame>
+		
+		<frame extends="inputText">
+			<variable ref="number_tr" value="10"/>
+		</frame>
+		
+		<frame extends="inputText">
+			<variable ref="number_tr" value="15"/>
+		</frame>
+		
+		<frame extends="inputText">
+			<variable ref="number_tr" value="18"/>
+		</frame>
+	</test>
+</testcase>

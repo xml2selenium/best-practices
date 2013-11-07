@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase name="с использованием property" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  description="В тестах url вынесен в property файл " 
+		  tags="Basic, итеративные, property">
+
+	<property resource="PropertyFile.property" name="property"/>
+	  
+	<test coverage="100" name="01 Test" 
+		  description="Проверить присутствие логотипа Google, и блока меню" 
+	      tags="google.com, navigate, webelement, field">
+		
+		<navigate to="${property.url}"/>
+		<webelement xpath="//div[@id='p-logo']/a" action="isExists"/>
+		<webelement xpath="//div[@id='mw-content-text']//td[@class='globegris']" action="isExists"/>
+	</test>	  
+	
+	<test coverage="100" name="02 Test" 
+		  description="Ввести текст 'selenium', и проверить, что текст присутствует на странице" 
+	      tags="wikipedia, navigate, webelement, assert">
+		
+		<navigate to="${property.url}"/>
+		<field id='searchInput' textToType="selenium"/>
+		<button id='searchButton'/>
+		<pause time="2000"/>
+		<webelement xpath="//h1[@id='firstHeading']/span" action="isContainsText" text="Selenium"/>
+	</test>	  
+</testcase>	

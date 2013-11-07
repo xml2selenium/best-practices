@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<imports xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	
+	<navigate ref="goToPage" to="http://localhost:${jetty.port}/test/test/registration.htm"/>
+	<field ref="login" id="login" textToType="smth_login"/>
+	<field ref="pass" id="pass" textToType="smth_password"/>
+	
+	<webelement ref="logo" xpath="//img[@src='xml2selenium_logo.png']" action="isExists"/>
+	<button ref="button" id="regButton" action="isExists"/>
+	
+	<frame ref="logPass">
+		<navigate extends="goToPage"/>
+		<field extends="login"/>
+		<field extends="pass"/>
+	</frame>
+	
+	<frame ref="checkElement">
+		<webelement extends="logo"/>
+		<button extends="button"/>
+	</frame>
+</imports>

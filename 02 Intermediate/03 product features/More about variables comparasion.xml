@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase name="сравнение переменных" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  description="Возможности сравнения переменных" 	
+		  tags="Intermediate, фичи продукта, сравнение переменных">
+		  	  
+	<test coverage="100" name="IsEmpty" 
+		  description="Проверяем переменная пустая" 
+		  tags="navigate, assert, isEmpty">
+		<navigate to="http://localhost:${jetty.port}/test/test/pageWithTable.htm"/>
+		
+		<webelement id="sendMailText" action="getText" returnValueName="empty"/>
+		<assert action="isEmpty" first="${empty}"/>
+	</test>
+	
+	<test coverage="100" name="IsTrue" 
+		  description="Проверяем, что переданное значение истино" 
+		  tags="navigate, assert, isTrue">
+		<navigate to="http://localhost:${jetty.port}/test/test/pageWithTable.htm"/>
+		
+		<field id="sendMailText" textToType="25"/>
+		<webelement xpath=".//*[@id='mainTable']//tr[2]/td[3]" action="getText" returnValueName="number"/>
+		<assert action="isTrue" first="${(number.matches('\\d+\\.\\d+')).toString()}"/>  
+	</test>
+	
+	<test coverage="100" name="VariableExists" 
+		  description="Проверяем, что переменная существует" 
+		  tags="navigate, assert, variableExists">
+		<navigate to="http://localhost:${jetty.port}/test/test/pageWithTable.htm"/>
+		
+		<field id="sendMailText" textToType="25"/>
+		<webelement id="sendMailText" action="getText" returnValueName="number"/>
+		<assert action="variableExists" first="number"/>  
+	</test>
+</testcase>

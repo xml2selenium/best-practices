@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase name="отключенный webdriver" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  tags="Basic, фичи продукта, webDriver" description="Отключение webdriver" webDriverOn="false">
+		  
+	<test coverage="100" name="01 Equals" 
+		  description="Сравниваем две равные переменные" 
+		  tags="assert, equals">
+		<assert action="equals" first="10" second="10"/>
+	</test>
+	
+	<test coverage="100" name="02 MoreThan" 
+		  description="Проверяем, что первое значение больше второго" 
+		  tags="assert, moreThan">
+		<assert action="moreThan" first="10" second="1"/>
+	</test>
+	
+	<test coverage="100" name="03 VariableExists" 
+		  description="Проверяем, что переменная существует" 
+		  tags="assert, variableExists, variable">
+		
+		<variable ref="var" value="xml2selenium"/>  
+		<assert action="variableExists" first="var"/>
+	</test>	  
+</testcase>	

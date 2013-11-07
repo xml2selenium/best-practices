@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase name="frame in import file" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  description="Используем фреймы в импортах" 	
+		  tags="Intermediate, фичи продукта, фреим в импорте">
+		  
+	<import resource="ImportFile.xml" name="import"/>	  
+		  
+	<test coverage="100" name="01 Test" 
+		  description="Данные для ввода логина и пароля, и для проверки элемента на странице, после вводя логина и пароля вынесены во frame в импорт файле." 
+		  tags="import, frame, extends">
+		<frame extends="import:logPass"/>
+		<frame extends="import:checkElement"/>
+	</test>
+</testcase>

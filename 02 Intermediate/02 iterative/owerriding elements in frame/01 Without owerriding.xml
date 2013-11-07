@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase name="без переопределения" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  description="Заполняем поля без переопределения" 	
+		  tags="Intermediate, итеративные, переопределение">
+		  
+	<test coverage="100" name="01 Ivanov" 
+		  description="Заполняем логин и пароль, для Ivanov" 
+		  tags="field" >
+		
+		<navigate to="http://localhost:${jetty.port}/test/test/index.htm"/>
+		<field id="login" textToType="Ivanov"/>
+		<field id="pass" textToType="smth_password"/>
+		
+		<button id="submit"/>
+		<webelement xpath="//span[@id='message']" text="SUCCESS" action="isContainsText"/>	
+	</test>
+	
+	<test coverage="100" name="02 Petrov" 
+		  description="Заполняем логин и пароль, для Petrov" 
+		  tags="field" >
+		
+		<navigate to="http://localhost:${jetty.port}/test/test/index.htm"/>
+		<field id="login" textToType="Petrov"/>
+		<field id="pass" textToType="smth_password"/>
+		
+		<button id="submit"/>
+		<webelement xpath="//span[@id='message']" text="SUCCESS" action="isContainsText"/>
+	</test>
+	
+	<test coverage="100" name="03 Sidorov" 
+		  description="Заполняем логин и пароль, для Sidorov" 
+		  tags="field, ref, frame" >
+		
+		<navigate to="http://localhost:${jetty.port}/test/test/index.htm"/>
+		
+		<field id="login" textToType="Sidorov"/>
+		<field id="pass" textToType="smth_password"/>
+		
+		<button id="submit"/>
+		<webelement xpath="//span[@id='message']" text="SUCCESS" action="isContainsText"/>
+	</test>
+		  
+</testcase>	

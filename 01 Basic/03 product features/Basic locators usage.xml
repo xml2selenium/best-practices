@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase name="локаторы" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  tags="Basic, фичи продукта, locators" description="Использование локаторов id, subId, xpath, tagName, cssSelector">
+		  
+	<test coverage="100" name="01 Локаторы" 
+		  description="Демонстрация, как при помощи локаторов: id, subId, xpath, tagName, cssSelector, можно подступиться к элементам страницы " 
+		  tags="id, subId, cssSlector, tagName, xpath">
+		<navigate to="http://localhost:${jetty.port}/test/test/registration.htm"/>
+		
+		<!-- id -->
+		<field id="fieldName" textToType="User Name" />
+		<!-- xpath -->
+		<field xpath="//table[@id='regTable']//input[@id='fieldPassword']" textToType="password"/>	
+		<!-- cssSselector -->
+		<field cssSelector="#fieldConfirmPassword" textToType="Confirm Password"/>
+		<!-- subId -->
+		<field subId="fieldEmail" textToType="Email"/>
+		
+		<button id="regButton"/>
+		<!-- tagName -->
+		<webelement tagName="span" text="SUCCESS" action="isContainsText"/>
+	</test>	  
+</testcase>	

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase name="снимки с экрана" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  tags="Basic, фичи продукта" description="Делаем screenshot, snapshot, video">
+		  
+	<test coverage="100" name="Снимки с экрана" 
+		  description="Делаем снимки с экрана, для Бизнес репорта, с помощью тегов screenshot, snapshot, video" 
+		  tags="navigate, field, screenshot, button, pause, snapshot, video">
+		<video action="start"/>  
+		<navigate to="http://localhost:${jetty.port}/test/test/index.htm"/>
+		<field id="login" textToType="smth_login"/>
+		<field id="pass" textToType="smth_password"/>
+		<video action="stop"/>
+		
+		<screenshot/>
+		<snapshot/>
+				
+		<button id="submit"/>
+		<pause time="2000"/>
+		
+		<screenshot/>
+		<snapshot/>
+				
+	</test>	  
+</testcase>	

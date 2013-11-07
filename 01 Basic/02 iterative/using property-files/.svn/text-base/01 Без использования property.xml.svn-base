@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase name="без использования property" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  description="В тестах дублируется url" 
+		  tags="Basic, итеративные">
+		    
+	<test coverage="100" name="01 Test" 
+		  description="Проверить присутствие логотипа Google, и блока меню" 
+	      tags="google.com, navigate, webelement, field">
+		
+		<navigate to="http://ru.wikipedia.org"/>
+		<webelement xpath="//div[@id='p-logo']/a" action="isExists"/>
+		<webelement xpath="//div[@id='mw-content-text']//td[@class='globegris']" action="isExists"/>
+	</test>	  
+	
+	<test coverage="100" name="02 Test" 
+		  description="Ввести текст 'selenium', и проверить, что текст присутствует на странице" 
+	      tags="wikipedia, navigate, webelement, assert">
+		
+		<navigate to="http://ru.wikipedia.org"/>
+		<field id='searchInput' textToType="selenium"/>
+		<button id='searchButton'/>
+		<pause time="2000"/>
+		<webelement xpath="//h1[@id='firstHeading']/span" action="isContainsText" text="Selenium"/>	
+	</test>	  
+</testcase>	
