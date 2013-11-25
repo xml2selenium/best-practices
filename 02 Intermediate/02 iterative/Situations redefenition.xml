@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testcase name="iterate" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		  description="Повторение определенных ситуации с использованием тега iterate и без него" 	
-		  tags="Intermediate, итеративные, повтороение определенных ситуаций">
+		  description="Repeat code with tag iterate and without it" 	
+		  tags="Intermediate, iterative, repeating actions">
 		  
 	<test coverage="100" name="01 Без iterate" 
-		  description="Копируем наименования товара и вставляем в поле отправки сообщения" 
+		  description="Copy product name and paste it for message send" 
 		  tags="navigate, field, webelement" >
 		
 		<navigate to="http://localhost:${jetty.port}/test/test/pageWithTable.htm"/>
@@ -26,7 +26,7 @@
 	</test>
 	
 	<test coverage="100" name="02 С iterate" 
-		  description="Действия: скопировать наименование товара и вставить в поле отправки сообщения заносим во frame, и применяем тег iterate для этого frame." 
+		  description="Copy product name and paste into message field using frame, and use tag iterate for this frame." 
 		  tags="navigate, field, frame, webelement, iterate" >
 		
 		<navigate to="http://localhost:${jetty.port}/test/test/pageWithTable.htm"/>

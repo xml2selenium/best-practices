@@ -1,44 +1,130 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testcase xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	name="Работа с тестами" description="Базовые возможности работы с тестами"
-	tags="Basic, базовые задачи">
+	name="Working with web elements" description="Working with different elements on web-page"
+	tags="Basic">
 
-	<test coverage="100" name="ExpectedException"
-		description="Ожидаем поваленный тест с определенной ошибкой"
-		expectedException="org.jazzteam.xml2selenium.core.exceptions.FrameworkWebDriverException"
-		tags="navigate, field, expectedException">
+	<test coverage="100" name="01 Check that web element exists"
+		description="Check that, web elements, 'xml2selenium' logo and button 'ok', exist on webpage"
+		tags="navigate, webelement, isExists">
 		<navigate to="http://localhost:${jetty.port}/test/test/registration.htm" />
-		<field id="nhfnfn" textToType="userName" />
+		<!-- xml2selenium logo -->
+		<webelement xpath="//img[@src='xml2selenium_logo.png']"
+			action="isExists" />
+		<!-- button -->
+		<button id="regButton" action="isExists" />
+	</test>
+	
+	<test coverage="100" name="02 Check web element not exists"
+		description="Check that button not exists on web page" tags="isNotExists">
+		<navigate to="http://localhost:${jetty.port}/test/test/registration.htm" />
+		<webelement xpath="//img[@src='xml2selenium_logo_logo.png']"
+			action="isNotExists" />
+		<!-- button -->
+		<button id="regButtonButton" action="isNotExists" />
+	</test>
+	
+	<test coverage="100" name="03 Check that text exists"
+		description="Check that specified web element has text"
+		tags="navigate, webelement, isContainsText">
+		<navigate to="http://localhost:${jetty.port}/test/test/success.htm" />
+		<webelement xpath="//*[@id='message']" text="SUCCESS"
+			action="isContainsText" />
+	</test>
+	
+	<test coverage="100" name="04 СlickButton"
+		description="Press button 'ok', at 'registration' block, then check that button works and redirect to another page works too"
+		tags="navigate, webelement, button">
+		<navigate to="http://localhost:${jetty.port}/test/test/registration.htm" />
+		<button id="regButton" />
+		<webelement xpath="//span[@id='message']" text="SUCCESS"
+			action="isContainsText" />
+	</test>
+	
+	<test coverage="100" name="05 Fill text field"
+		description="Fill login and password text fields" tags="field">
+		<navigate to="http://localhost:${jetty.port}/test/test/registration.htm" />
+		<field id="login" textToType="smth_login" />
+		<field id="pass" textToType="smth_password" />
 	</test>
 
-	<test coverage="100" name="ExpectedMessage"
-		description="Ожидаем поваленный тест с определенным сообщением"
-		expectedMessage="Can not find element on web page by id=nhfnfn" tags="navigate, field, expectedMessage">
+	<test coverage="100" name="06 Clear text field"
+		  description="Fill fields login, password, clear fields using action clearOldText='true', then print new values"
+		  tags="field">
 		<navigate to="http://localhost:${jetty.port}/test/test/registration.htm" />
-		<field id="nhfnfn" textToType="userName" />
+		<field id="login" textToType="smth_login" />
+		<field id="pass" textToType="smth_password" />
+		<field id="login" textToType="userJazzteam" clearOldText="true" />
+		<field id="pass" textToType="j4a5k4R38d7635" clearOldText="true" />
+	</test>
+		
+	<test coverage="100" name="07 combobox country" 
+		  description="Select country from combobox"
+		  tags="combobox, button, navigate">
+		<navigate to="http://localhost:${jetty.port}/test/test/registration.htm" />
+		<combobox id="country" by="value" value="by" />
+		<button id="regButton" />
+	</test>
+	
+	<test coverage="100" name="08 ComboBox check country"
+		  description="Select 'Belarus' in combobox, check that selected value displayed"
+		  tags="navigate, combobox">
+		<navigate to="http://localhost:${jetty.port}/test/test/registration.htm" />
+		<combobox id="country" by="value" value="by" />
+		<combobox id="country" action="isContainsText" text="Belarus" />
+	</test>
+	
+	<test coverage="100" name="09 CheckBox"
+		  description="Click on checkbox, check checkbox state checked, click next time, check checkbox state unchecked"
+		  tags="navigate, checkbox, isEnabled, isDisabled">
+		<navigate to="http://localhost:${jetty.port}/test/test/registration.htm" />
+		<checkbox id="cookieuser" action="click" />
+		<checkbox id="cookieuser" action="isEnabled" />
+		<checkbox id="cookieuser" action="click" />
+		<checkbox id="cookieuser" action="isDisabled" />
 	</test>
 
-	<test coverage="100" name="Expected_error" description="Ожидаем тест с результатом Error"
-		expected="error" tags="navigate, field, expected, error">
+	<test coverage="100" name="10 Variable"
+		  description="Set text to variable, print variable to field as groovy parameter"
+		  tags="variable, field">
 		<navigate to="http://localhost:${jetty.port}/test/test/registration.htm" />
-		<field id="fieldName" textToType="userName" />
-		<field ref="errorElement" id="fieldPass" textToType="password" />
+		<variable ref="you_login" value="Ivanov" />
+		<variable ref="you_pass" value="password" />
+		<field id="login" textToType="${you_login}" />
+		<field id="pass" textToType="${you_pass}" />
+		<button id="regButton" />
 	</test>
 
-	<test coverage="100" name="Expected_fail" description="Ожидаем тест с результатом Fail"
-		expected="fail" tags="navigate, field, expected, fail">
+	<test coverage="100" name="11 Copy page text into variable"
+		  description="Copy page text to variable, check that this text exists on another page"
+		  tags="navigate, field, button, webelement, getText">
 		<navigate to="http://localhost:${jetty.port}/test/test/registration.htm" />
-		<field id="fieldName" textToType="userName" />
-		<webelement id="fieldName" action="getText"
-			returnValueName="textOfElement" />
-		<assert action="equals" first="UserUserUserName" second="${textOfElement}" />
+		<field id="login" textToType="smth_login" />
+		<field id="pass" textToType="smth_password" />
+		<webelement id="footer" action="getText" returnValueName="text" />
+		<button id="regButton" />
+		<webelement id="footer" action="isContainsText" text="${text}" />
 	</test>
 
-	<test coverage="100" name="Expected_where_error"
-		description="Ожидаем тест с результатом Error, и указываем в каком элементе произойдет ошибка"
-		expected="error" where="errorElement" tags="navigate, field, expected, where, error">
+	<test coverage="100" name="12 Simple controls"
+		  description="Using simple controls button, field, checkbox, combobox"
+		  tags="button, field, checkbox, combobox">
 		<navigate to="http://localhost:${jetty.port}/test/test/registration.htm" />
-		<field id="fieldName" textToType="userName" />
-		<field ref="errorElement" id="fieldPass" textToType="password" />
+		<field id="fieldName" textToType="User Name" />
+		
+		<checkbox id="cookieuser" action="click" />
+		<checkbox id="cookieuser" action="isEnabled" />
+		
+		<combobox id="country" by="value" value="uk" />
+		
+		<button id="regButton" />
 	</test>
+	
+	<test name="13 Mouse moving" coverage="100" 
+		  description="When mouse move over element popup window displays" 
+		  tags="navigate, webelement, pause, mouseMove" >
+	
+		<navigate to="http://localhost:${jetty.port}/test/test/registration.htm" />
+		<webelement id="fieldPassword" action="mouseMove"/>
+		<pause time="2000"/>
+	</test>	  
 </testcase>	

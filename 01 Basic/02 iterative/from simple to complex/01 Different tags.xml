@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testcase name="Использование разных тегов" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		  description="Написание простого теста с использованием разных тегов" 
-		  tags="Basic, итеративные, от простого к сложному">
+<testcase name="Different tags usage" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  description="Create simple test using different tags" 
+		  tags="Basic, iterative, from simple to complex">
 		  
-	<test coverage="100" name="01 Простой тест" 
-		  description="Заполняем форму регистрации, переходим на другую страницу и проверяем присутствие элементов. для Иванова" 
+	<test coverage="100" name="01 Simple test" 
+		  description="Fill register form, go to another page, check elements displayed. For 'Ivanov' user." 
 	      tags="navigate, webelement, button, field">
 		<navigate to="http://localhost:${jetty.port}/test/test/registration.htm"/>
 		
@@ -20,8 +20,8 @@
 		<webelement xpath="//div[@id='righter']" action="isExists"/>
 	</test>	  
 	
-	<test coverage="100" name="02 Простой тест" 
-	      description="Заполняем форму регистрации, переходим на другую страницу и проверяем присутствие элементов. для Петрова"
+	<test coverage="100" name="02 Simple test" 
+	      description="Fill register form, go to another page, check elements displayed. For 'Petrov' user."
 	      tags="navigate, webelement, button, field">
 		<navigate to="http://localhost:${jetty.port}/test/test/registration.htm"/>
 		

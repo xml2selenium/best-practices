@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testcase name="настройки youtube" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		  description="Изменить настройки youtube" 	
-		  tags="Basic, популярные сервисы">
+<testcase name="Youtube settings" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  description="Change Youtube settings" 	
+		  tags="Basic, popular services">
 		  
 	<test coverage="100" name="01 YouTube" 
-		  description="Меняем настройки, язык, страну, безопасность" 
+		  description="Change settings, language, country, safety" 
 		  tags="youtube, navigate, webelement, button, assert, radio" >
 		<navigate to="http://www.youtube.com/"/>
 		

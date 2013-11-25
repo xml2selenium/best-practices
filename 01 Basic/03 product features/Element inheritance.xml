@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testcase name="наследование" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		  tags="Basic, фичи продукта" description="Наследование элементов при помощи атрибутов 'ref' и 'extends'">
+<testcase name="Inheritance" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  tags="Basic, product features" description="Elements inheritance using 'ref' and 'extends' attributes">
 		  
-	<test coverage="100" name="01 Наследование" 
-		  description="Присваиваем имя тегу, c помощью атрибута 'ref', а потом наследуемся от от имени теста, при помощи атрибута 'extends'" 
+	<test coverage="100" name="01 Inheritance" 
+		  description="Set name to tag using 'ref' attribute, then extend this element using 'extends' attribute" 
 		  tags="navigate, webelement, button, ref, extends">
 		<navigate to="http://localhost:${jetty.port}/test/test/registration.htm"/>
 		

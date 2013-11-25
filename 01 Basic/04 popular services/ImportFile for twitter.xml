@@ -39,12 +39,10 @@
     <frame ref="selectFavoriteTweet">
     	<variable ref="numberTwit" value="data"/> 
         <!-- select first tweet how  favorite -->
-        <webelement xpath="//ol[@id='stream-items-id']/li[1]" action="click"/>
-        <pause time="2000"/>
         <webelement xpath="//li[${numberTwit}]//div[@class='stream-item-footer']" action="mouseMove"/>
+        <pause time="2000"/>
         <webelement xpath="//li[${numberTwit}]//div[@class='stream-item-footer']//a[@class='with-icn favorite js-tooltip']"
                     action="click"/>
-        <button xpath="//a[@title='Me']"/>
         <pause time="2000"/>
 
     </frame>
@@ -52,16 +50,17 @@
     <frame ref="checkFavoriteTweets">
     	<variable ref="numberTwit" value="data"/>
         <!-- check existing favorite tweet -->
-        <webelement xpath="//a[@data-nav='favorites']" action="click"/>
+        <pause time="2000"/>
         <webelement xpath="//ol[@id='stream-items-id']/li[${numberTwit}]" action="isExists"/>
         <pause time="2000"/>
-        <webelement xpath="//div[@class='component']//a[@data-nav='profile']" action="click"/>
     </frame>
 
     <frame ref="deleteTweet">
+    	<pause time="2000"/>
     	<variable ref="numberTwit" value="data"/>
         <!-- delete first tweet -->
         <webelement xpath="//li[${numberTwit}]//div[@class='stream-item-footer']" action="mouseMove"/>
+        <pause time="2000"/>
         <webelement xpath="//li[${numberTwit}]//div[@class='stream-item-footer']//a[@class='with-icn js-action-del js-tooltip']"
                     action="click"/>
         <button xpath="//button[@class='btn primary-btn delete-action']"/>

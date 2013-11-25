@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testcase name="локаторы" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		  tags="Basic, фичи продукта, locators" description="Использование локаторов id, subId, xpath, tagName, cssSelector">
+<testcase name="Locators" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  tags="Basic, product features, locators" description="Using locators id, subId, xpath, tagName, cssSelector">
 		  
-	<test coverage="100" name="01 Локаторы" 
-		  description="Демонстрация, как при помощи локаторов: id, subId, xpath, tagName, cssSelector, можно подступиться к элементам страницы " 
+	<test coverage="100" name="01 Locators" 
+		  description="Demo: getting web-page elements using following locators: id, subId, xpath, tagName, cssSelector" 
 		  tags="id, subId, cssSlector, tagName, xpath">
 		<navigate to="http://localhost:${jetty.port}/test/test/registration.htm"/>
 		

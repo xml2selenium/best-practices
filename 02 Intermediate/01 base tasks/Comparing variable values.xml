@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testcase name="сравнение переменных" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		  description="Использование тега assert для сравнивания переменных" 	
-		  tags="Intermediate, базовые задачи">
+<testcase name="Compare variable values" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  description="Using assert tag for variables comparison" 	
+		  tags="Intermediate, base tasks">
 		  
-	<test coverage="100" name="01 Равные цены" 
-		  description="Сравниваем две равных цены разных товаров" 
+	<test coverage="100" name="01 Different prices" 
+		  description="Compare two equals prices of different products" 
 		  tags="navigate, webelement, assert, equals" >
 		
 		<navigate to="http://localhost:${jetty.port}/test/test/pageWithTable.htm"/>
@@ -14,8 +14,8 @@
 		<assert action="equals" first="${price1}" second="${price2}"/>
 	</test>
 	
-	<test coverage="100" name="02 Разные цены" 
-		  description="Проверяем, что первая цена больше второй" 
+	<test coverage="100" name="02 Different prices" 
+		  description="Check first price larger then second" 
 		  tags="navigate, webelement, assert, moreThan, groovy" >
 		
 		<navigate to="http://localhost:${jetty.port}/test/test/pageWithTable.htm"/>

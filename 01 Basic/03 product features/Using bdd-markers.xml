@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testcase name="bdd маркеры" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		  tags="Basic, фичи продукта" description="Используем bdd маркеры" >
+<testcase name="bdd markers" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  tags="Basic, product features" description="Using bdd markers" >
 		  
 	<test coverage="100" name="01 Bdd маркеры" 
-		  description="тест с 5 bdd-маркерами, валится на 3 маркере." 
-		  tags="bdd, field, тест должен валиться">
+		  description="Test with 5 bdd-markers, демонстрация отображения маркеров в Behavior report" 
+		  tags="bdd, field, behavior report">
 		<navigate to="http://localhost:${jetty.port}/test/test/registration.htm"/>
 		
 		<bdd message="mane"/>
@@ -12,7 +12,7 @@
 		<bdd message="pass"/>
 		<field id='fieldPassword' textToType="password"/>
 		<bdd message="confirmPass"/>	
-		<field id="fieldConfirmPasswor" textToType="Confirm Password"/>
+		<field id="fieldConfirmPassword" textToType="Confirm Password"/>
 		<bdd message="email"/>
 		<field id="fieldEmail" textToType="Email"/>
 		

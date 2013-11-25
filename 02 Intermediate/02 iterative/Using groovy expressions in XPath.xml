@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testcase name="groovy в xpath" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		  description="В тесткейсе демонстрируем, работу с передачей параметров в xpath и без передачи параметров в xpath" 	
-		  tags="Intermediate, итеративные, groovy в xpath">
+		  description="Specify parameters in xpath and do not specify examples" 	
+		  tags="Intermediate, iterative, groovy in xpath">
 		  
-	<test coverage="100" name="01 Без использования groovy в xpath" 
-		  description="Работаем с xpaht элементов без использования groovy в xpath" 
+	<test coverage="100" name="01 Without groovy in xpath" 
+		  description="Working with xpath without groovy usage" 
 		  tags="navigate, webelement, field" >
 		
 		<navigate to="http://localhost:${jetty.port}/test/test/pageWithTable.htm"/>
@@ -19,8 +19,8 @@
 		<field id="sendMailText" textToType="${price4}"/>
 	</test>
 	
-	<test coverage="100" name="02 С использование groovy в xpath" 
-		  description="С помощью тега variable, в xpath передаем переменную с нужным значением" 
+	<test coverage="100" name="02 Using groovy in xpath" 
+		  description="Specify parameter in xpath using variable" 
 		  tags="navigate, webelement, field, frame, xpath, groovy, variable" >
 		
 		<navigate to="http://localhost:${jetty.port}/test/test/pageWithTable.htm"/>

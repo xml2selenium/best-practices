@@ -1,99 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testcase name="видео-ролик из youtube" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		  description="Найти на youtube видео-ролик и добавить его в пост" 	
-		  tags="Basic, популярные сервисы">
+<testcase name="Video from youtube" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  description="Find video on youtube and add it to post" 	
+		  tags="Basic, popular services">
+	<property name="logpass" resource="../property/logPass.property" />
+	<before>
+		<!-- login -->
+		<navigate to="http://xml2selenium.com/demowp/wp-login.php"/>
+		<field id="user_login" textToType="${logpass.loginWP}"/>
+		<field id="user_pass" textToType="${logpass.passwordWP}"/>
+		<button id="wp-submit"/>
+		<pause time="3000"/>
+	</before>
 		  
-	<test coverage="100" name="01 Пост с видео" 
-		  description="На youtube копируем путь к видео-ролику, создаем пост с видео-роликом" 
+	<test coverage="100" name="01 Post with video" 
+		  description="Copy path to video on youtube, create post with video" 
 		  tags="youtube, wordpress, navigate, webelement, field, button, pause" >
 		  
 		<navigate to="http://www.youtube.com/"/>
-		<pause time="3000"/>
-		
 		<field id='masthead-search-term' textToType="humor"/>
 		<button id="search-btn"/>
-		<webelement xpath="//*[@id='search-results']/li[1]" action="click"/>
-		<pause time="2000"/>
+		<pause time="5000"/>
+		<webelement xpath="//ol[@id='search-results']/li[@data-context-item-type='video'][1]" action="click"/>
 		
-		<!-- берем код видео -->
+		<!-- take video code -->
 		<webelement xpath="//div[@id='watch7-secondary-actions']/span[2]/button" action="click"/>
-		<pause time="2000"/>
 		<webelement xpath="//*[@id='share-panel-buttons']//button[@class='share-panel-embed yt-uix-button yt-uix-button-text yt-uix-button-size-default']" action="click"/>
-		<pause time="2000"/>
 		<webelement xpath="//div[@id='watch-actions-share-panel']//textarea[@class='yt-uix-form-input-textarea share-embed-code']" action="getText" returnValueName="pathToVideo"/>     
-		<pause time="2000"/>
+		<pause time="3000"/>
 		
 		<!-- wordpress -->
-		<navigate to="http://xml2selenium.com/demowp/"/>
-		<webelement xpath="//*[@id='meta-2']//a[@href='http://xml2selenium.com/demowp/wp-login.php']" action="click"/>
-		<pause time="1000"/>
-		
-		<field id="user_login" textToType="admin"/>
-		<field id="user_pass" textToType="S|Q0:Vvo3O5C2k5"/>
-		<button id="wp-submit"/>
-		<pause time="1000"/>
-		
+		<navigate to="http://xml2selenium.com/demowp/wp-admin/profile.php"/>
 		<button xpath="//a[@class='wp-has-submenu wp-not-current-submenu open-if-no-js menu-top menu-icon-post menu-top-first']//div[@class='wp-menu-name']"/>
 		<button xpath="//*[@id='wpbody']//a[@class='add-new-h2']"/>
-		<pause time="3000"/>
 		
 		<field id="title" textToType="Video youtube"/>
 		<button id="content-html"/>
 		
 		<field id='content' textToType="${pathToVideo}"/>
-		<pause time="3000"/>
-		
+		<pause time="10000"/>
 		<button id="publish"/>
+		<webelement xpath="//input[@name='save'][@value='Update']" action="isExists"/>
 		
-		<!-- logout -->
-		<webelement xpath="//a[@title='My Account']" action="mouseMove"/>
-		<webelement xpath="//li[@id='wp-admin-bar-logout']/a" action="isExists"/>
-		<webelement xpath="//li[@id='wp-admin-bar-logout']/a" action="click"/>
-		<webelement id="login" action="isExists"/>  
-	</test>	 
-	
-	<test coverage="100" name="02 Проверка поста с видео" 
-		  description="Проверяем, что пост с видео создался" 
-		  tags="wordpress, post, navigate, webelement" >
 		<navigate to="http://xml2selenium.com/demowp/"/>
 		<webelement xpath="//*[@id='content']/article[1]/header[@class='entry-header']/h1[@class='entry-title']/a"
 					action="isContainsText" text="Video youtube"/>			
-		<webelement xpath="//article[1]//div[@class='entry-content']" action="isExists"/>	
-	</test> 
+		<webelement xpath="//article[1]//div[@class='entry-content']" action="isExists"/>
+	</test>	 
 	
-	<test coverage="100" name="03 Удалить пост" 
-	      description="Заходим на страницу администратора и удаляем пост" 
+	<test coverage="100" name="03 Delete post" 
+	      description="Navigate to admin page, delete post" 
 		  tags="wordpress, post, navigate, webelement, field, button, checkbox, combobox, pause" >
-	
-		<navigate to="http://xml2selenium.com/demowp/"/>
-		<webelement xpath="//*[@id='meta-2']//a[@href='http://xml2selenium.com/demowp/wp-login.php']" action="click"/>
-		<pause time="1000"/>
 		
-		<field id="user_login" textToType="admin"/>
-		<field id="user_pass" textToType="S|Q0:Vvo3O5C2k5"/>
-		<button id="wp-submit"/>
-		<pause time="1000"/>
-		
+		<navigate to="http://xml2selenium.com/demowp/wp-admin/profile.php"/>
 		<button xpath="//a[@class='wp-has-submenu wp-not-current-submenu open-if-no-js menu-top menu-icon-post menu-top-first']//div[@class='wp-menu-name']"/>
 		
-		<checkbox xpath="//*[@id='the-list']/tr[1]/th[@class='check-column']/input[@type='checkbox']" action="click"/>
+		<checkbox id="cb-select-all-1" action="click"/>
 		<combobox xpath="//*[@id='posts-filter']//select[@name='action']" by="value" value="trash"/>
 		<button id="doaction"/>
-		
-		<pause time="3000"/>
-		
-		<!-- logout -->
-		<webelement xpath="//a[@title='My Account']" action="mouseMove"/>
-		<webelement xpath="//li[@id='wp-admin-bar-logout']/a" action="isExists"/>
-		<webelement xpath="//li[@id='wp-admin-bar-logout']/a" action="click"/>
-		<webelement id="login" action="isExists"/>
 	</test>	  	  
 		  
-	<test coverage="100" name="04 Проверка удаления поста" 
-		  description="Проверяем, что пост удалился" 
+	<test coverage="100" name="04 Check post deleted" 
+		  description="Check whether post deleted" 
 		  tags="navigate, webelement" >
+		
 		<navigate to="http://xml2selenium.com/demowp/"/>
 		<webelement xpath="//*[@id='content']/article[1]/header[@class='entry-header']/h1[@class='entry-title']/a"
 					action="isNotExists"/>
+				
 	</test>	  
+	
+	<after>
+		<!-- logout -->
+		<pause time="3000"/>
+		<navigate to="http://xml2selenium.com/demowp/wp-login.php?loggedout=true"/>
+		<webelement id="login" action="isExists"/>
+	</after>
 </testcase>	

@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testcase name="wordpress plugin" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		  description="Устанавливаем и удаляем плагин" 	
-		  tags="Basic, популярные сервисы">
+		  description="Install and delete plugin" 	
+		  tags="Basic, popular services">
 		  
-	<test coverage="100" name="01 InstalPlugin" 
-		  description="Устанавливаем плагин, и делаем screenshot, snapshot для Бизнес репорта" 
-		  tags="navigate, field, button, webelement, checkbox, combobox, screenshot, snapshot" >
-			
-		<navigate to="http://xml2selenium.com/demowp/"/>
-		<webelement xpath="//*[@id='meta-2']//a[@href='http://xml2selenium.com/demowp/wp-login.php']" action="click"/>
-		<pause time="1000"/>
-		
-		<field id="user_login" textToType="admin"/>
-		<field id="user_pass" textToType="S|Q0:Vvo3O5C2k5"/>
+	<property name="logpass" resource="../property/logPass.property" />	  
+	<before>
+		<!-- login -->
+		<navigate to="http://xml2selenium.com/demowp/wp-login.php"/>
+		<field id="user_login" textToType="${logpass.loginWP}"/>
+		<field id="user_pass" textToType="${logpass.passwordWP}"/>
 		<button id="wp-submit"/>
-		<pause time="1000"/>
+		<pause time="3000"/>
+	</before>
+		  	  
+	<test coverage="100" name="01 InstalPlugin" 
+		  description="Install plugin, save screenshot, snapshot for business report" 
+		  tags="navigate, field, button, webelement, checkbox, combobox, screenshot, snapshot" >
 		
 		<button xpath="//*[@id='menu-plugins']//div[@class='wp-menu-name']"/>
 		<field id="plugin-search-input" textToType="Hello Dolly"/>
 		<button id='search-submit'/>
-		<pause time="2000"/>
+		
 		
 		<checkbox xpath="//*[@id='hello-dolly']//input" action="click"/>
 		<combobox xpath="//*[@id='wpbody-content']//select[@name='action']" by="value" value="activate-selected"/>
@@ -28,29 +29,16 @@
 		<screenshot/>
 		<snapshot/>		
 		
-		<!-- logout -->
-		<webelement xpath="//a[@title='My Account']" action="mouseMove"/>
-		<webelement xpath="//li[@id='wp-admin-bar-logout']/a" action="isExists"/>
-		<webelement xpath="//li[@id='wp-admin-bar-logout']/a" action="click"/>
-		<webelement id="login" action="isExists"/>   
 	</test>	 
 	
 	<test coverage="100" name="02 DeletePlugin" 
-		  description="Удаляем плагин, и делаем screenshot, snapshot для Бизнес репорта" 
+		  description="Delete plugin, save screenshot, snapshot for business report" 
 		  tags="navigate, field, button, webelement, checkbox, combobox, screenshot, snapshot, radio" >
-		<navigate to="http://xml2selenium.com/demowp/"/>
-		<webelement xpath="//*[@id='meta-2']//a[@href='http://xml2selenium.com/demowp/wp-login.php']" action="click"/>
-		<pause time="1000"/>
-		
-		<field id="user_login" textToType="admin"/>
-		<field id="user_pass" textToType="S|Q0:Vvo3O5C2k5"/>
-		<button id="wp-submit"/>
-		<pause time="1000"/>
 		
 		<button xpath="//*[@id='menu-plugins']//div[@class='wp-menu-name']"/>
 		<field id="plugin-search-input" textToType="Hello Dolly"/>
 		<button id='search-submit'/>
-		<pause time="2000"/>
+		
 		
 		<checkbox xpath="//*[@id='hello-dolly']//input" action="click"/>
 		<combobox xpath="//*[@id='wpbody-content']//select[@name='action']" by="value" value="deactivate-selected"/>
@@ -59,10 +47,12 @@
 		<screenshot/>
 		<snapshot/>	
 		
-		<!-- logout -->
-		<webelement xpath="//a[@title='My Account']" action="mouseMove"/>
-		<webelement xpath="//li[@id='wp-admin-bar-logout']/a" action="isExists"/>
-		<webelement xpath="//li[@id='wp-admin-bar-logout']/a" action="click"/>
-		<webelement id="login" action="isExists"/>	
 	</test> 
+	
+	<after>
+		<!-- logout -->
+		<pause time="3000"/>
+		<navigate to="http://xml2selenium.com/demowp/wp-login.php?loggedout=true"/>
+		<webelement id="login" action="isExists"/>
+	</after>	 
 </testcase>	

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testcase name="без использования before_after" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		  description="В каждом тесте нужно объявить действия: открыть страницу, указать логин и пароль, подтверждение введенных данных, разлогиниться " 
-		  tags="Basic, итеративные, before/after">
+<testcase name="Without using before_after" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  description="Each test makes following actions: open webpage, enter login and password, confirm entered data, logout" 
+		  tags="Basic, iterative, before/after">
 		  
-	<test coverage="100" name="01 Проверка блока menu" 
-		  description="Переходим на страницу регистрации, вводим логин и пароль и проверяем присутствие блока меню. Разлогинились" 
+	<test coverage="100" name="01 Check menu block" 
+		  description="Navigate to register page, enter login and password check menu block exists. Logout." 
 	      tags="webelement, button, field">
 		<navigate to="http://localhost:${jetty.port}/test/test/registration.htm"/>
 		
@@ -20,8 +20,8 @@
 		
 	</test>	  
 	
-	<test coverage="100" name="02 Проверка блока form" 
-	      description="Переходим на страницу регистрации, вводим логин и пароль и проверяем присутствие блока form. Разлогинились"
+	<test coverage="100" name="02 Check form block" 
+	      description="Navigate to register page, enter login and password check form block exists. Logout."
 	      tags="webelement, button, field">
 		<navigate to="http://localhost:${jetty.port}/test/test/registration.htm"/>
 		
@@ -36,8 +36,8 @@
 		<webelement id="message" action="isContainsText" text="BYE-BYE!!!"/>
 	</test>
 	
-	<test coverage="100" name="03 Проверка блока footer" 
-	      description="Переходим на страницу регистрации, вводим логин и пароль и проверяем присутствие блока footer. Разлогинились"
+	<test coverage="100" name="03 Check footer" 
+	      description="Navigate to register page, enter login and password, check footer blobk exists. Logout."
 	      tags="webelement, button, field">
 		<navigate to="http://localhost:${jetty.port}/test/test/registration.htm"/>
 		

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testcase name="сравнение переменных" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		  description="Возможности сравнения переменных" 	
-		  tags="Intermediate, фичи продукта, сравнение переменных">
+<testcase name="Variables comparison" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  description="Variables comparison features" 	
+		  tags="Intermediate, product features, variables comparison">
 		  	  
 	<test coverage="100" name="IsEmpty" 
-		  description="Проверяем переменная пустая" 
+		  description="Verify variable is empty" 
 		  tags="navigate, assert, isEmpty">
 		<navigate to="http://localhost:${jetty.port}/test/test/pageWithTable.htm"/>
 		
@@ -13,7 +13,7 @@
 	</test>
 	
 	<test coverage="100" name="IsTrue" 
-		  description="Проверяем, что переданное значение истино" 
+		  description="Verify specified value is 'true'" 
 		  tags="navigate, assert, isTrue">
 		<navigate to="http://localhost:${jetty.port}/test/test/pageWithTable.htm"/>
 		
@@ -23,7 +23,7 @@
 	</test>
 	
 	<test coverage="100" name="VariableExists" 
-		  description="Проверяем, что переменная существует" 
+		  description="Verify variable exists" 
 		  tags="navigate, assert, variableExists">
 		<navigate to="http://localhost:${jetty.port}/test/test/pageWithTable.htm"/>
 		

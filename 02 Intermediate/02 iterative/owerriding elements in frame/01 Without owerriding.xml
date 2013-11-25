@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testcase name="без переопределения" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		  description="Заполняем поля без переопределения" 	
-		  tags="Intermediate, итеративные, переопределение">
+<testcase name="Without overriding" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  description="Fill fields without overriding" 	
+		  tags="Intermediate, iterative, overriding">
 		  
 	<test coverage="100" name="01 Ivanov" 
-		  description="Заполняем логин и пароль, для Ivanov" 
+		  description="Fill login and password for user 'Ivanov'" 
 		  tags="field" >
 		
 		<navigate to="http://localhost:${jetty.port}/test/test/index.htm"/>
@@ -16,7 +16,7 @@
 	</test>
 	
 	<test coverage="100" name="02 Petrov" 
-		  description="Заполняем логин и пароль, для Petrov" 
+		  description="Fill login and password for user 'Petrov'" 
 		  tags="field" >
 		
 		<navigate to="http://localhost:${jetty.port}/test/test/index.htm"/>
@@ -28,7 +28,7 @@
 	</test>
 	
 	<test coverage="100" name="03 Sidorov" 
-		  description="Заполняем логин и пароль, для Sidorov" 
+		  description="Fill login and password for user 'Sidorov'" 
 		  tags="field, ref, frame" >
 		
 		<navigate to="http://localhost:${jetty.port}/test/test/index.htm"/>

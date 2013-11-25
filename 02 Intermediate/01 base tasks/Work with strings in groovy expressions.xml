@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testcase name="java_lang_string" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		  description="Работа с методами класса java.lang.string, через grovvy выражения " 	
-		  tags="Intermediate, базовые задачи, groovy, java.lang.string">
+		  description="Working with java.lang.String methods, using groovy expressions" 	
+		  tags="Intermediate, base tasks, groovy, java.lang.String">
 		  
 	<test coverage="100" name="01 EqualsIgnoreCase" 
-		  description="С помощью метода equalsIgnoreCase(), сравниваем две одинаковые переменные, с разным регистром, игнорирую регистр символов" 
-		  tags="java.lang.string.equalsIgnoreCase(), navigate, webelement, assert" >
+		  description="Compare two equal variables with different upper and lower cases using equalsIgnoreCase()" 
+		  tags="java.lang.String.equalsIgnoreCase(), navigate, webelement, assert" >
 		
 		<navigate to="http://localhost:${jetty.port}/test/test/pageWithTable.htm"/>
 		<webelement xpath="//*[@id='mainTable']//tr[14]/td[1]" action="getText" returnValueName="pathNumber"/>
@@ -14,8 +14,8 @@
 	</test>
 	
 	<test coverage="100" name="02 Replace" 
-		  description="С помощью метода replace(), заменяем указанные символы на нужные" 
-		  tags="java.lang.string.replace(), navigate, webelement, assert" >
+		  description="Change specified characters using replace()" 
+		  tags="java.lang.String.replace(), navigate, webelement, assert" >
 		
 		<navigate to="http://localhost:${jetty.port}/test/test/pageWithTable.htm"/>
 		<webelement xpath="//*[@id='mainTable']//tr[2]/td[2]" action="getText" returnValueName="product_name"/>
@@ -25,8 +25,8 @@
 	</test>
 	
 	<test coverage="100" name="03 Substring" 
-		  description="С помощью метода substring(), удаляем из строки столько символов, сколько указанно в substring(), начиная с 0." 
-		  tags="java.lang.string.substring(), navigate, webelement, assert" >
+		  description="Remove specified number of characters using substring()." 
+		  tags="java.lang.String.substring(), navigate, webelement, assert" >
 		
 		<navigate to="http://localhost:${jetty.port}/test/test/pageWithTable.htm"/>
 		<webelement xpath="//*[@id='mainTable']//tr[13]/td[2]" action="getText" returnValueName="product_name"/>
@@ -37,7 +37,7 @@
 	</test>
 	  
 	<test coverage="100" name="04 ToLowerCase" 
-		  description="С помощью метода toLowerCase(), переводим строку в верхний регистр." 
+		  description="Set string to lover case using toLowerCase()." 
 		  tags="java.lang.string.toLowerCase(), navigate, webelement, assert" >
 		
 		<navigate to="http://localhost:${jetty.port}/test/test/pageWithTable.htm"/>

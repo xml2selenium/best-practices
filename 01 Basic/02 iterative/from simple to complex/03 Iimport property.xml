@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testcase name="import и property" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		  description="В тесткейсе, данные для заполнения форм регистрации и проверки элемента после регистрации вынесены в import файл. Текст отображающийся после подтверждения регистрации в property файл" 
-		  tags="Basic, итеративные, от простого к сложному, before"> 
+<testcase name="import and property" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		  description="Actions for filling register form and checking page after registration placed to import-file. Text which displayed after registration placed to property-file." 
+		  tags="Basic, iterative, from simple to complex, before"> 
 	
 	<import resource="ImportFile.xml" name="import"/>
 	<property resource="PropertyFile.property" name="property"/>
@@ -11,26 +11,26 @@
 	</before>	  
 		  
 	<test coverage="100" name="0 Простой тест" 
-		  description="Заполняем форму регистрации с использованием import, property. для Иванова"
+		  description="Fill registration form using import, property. For 'Ivanov' user."
 		  tags="variable, frame, webelement, import, property">
 		
 		<variable ref="confirmPassword" value="password"/>
 		<variable ref="userName" value="Ivanov"/>  
 		
-		<frame extends="import:заполнение формы регистрации"/>
-		<frame extends="import:проверка элементов после регистрации"/>
+		<frame extends="import:fill registration form"/>
+		<frame extends="import:check elements after register"/>
 		<webelement id="message" text="${property.textSuccess}" action="isContainsText"/>
 	</test>	  
 	
-	<test coverage="100" name="02 Простой тест" 
-		  description="Заполняем форму регистрации с использованием import property. для Петрова"
+	<test coverage="100" name="02 Simple test" 
+		  description="Fill registration form using import, property. For 'Petrov' user."
 		  tags="variable, frame, webelement, import, property">
 		
 		<variable ref="confirmPassword" value="password"/>
 		<variable ref="userName" value="Petrov"/>  
 		  
-		<frame extends="import:заполнение формы регистрации"/>
-		<frame extends="import:проверка элементов после регистрации"/>
+		<frame extends="import:fill registration form"/>
+		<frame extends="import:check elements after register"/>
 		<webelement id="message" text="${property.textSuccess}" action="isContainsText"/>
 	</test>	  
 </testcase>	

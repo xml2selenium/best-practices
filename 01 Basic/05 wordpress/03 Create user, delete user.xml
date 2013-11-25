@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testcase name="wordpress создание пользователя" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		  description="создаем и удаляем пользователя" 	
-		  tags="Basic, популярные сервисы">
+<testcase name="wordpress create user" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  description="Create and delete user" 	
+		  tags="Basic, popular services">
+	<property name="logpass" resource="../property/logPass.property" />	  
+	<before>
+		<!-- login -->
+		<navigate to="http://xml2selenium.com/demowp/wp-login.php"/>
+		<field id="user_login" textToType="${logpass.loginWP}"/>
+		<field id="user_pass" textToType="${logpass.passwordWP}"/>
+		<button id="wp-submit"/>
+		<pause time="3000"/>
+	</before>
 		  
 	<test coverage="100" name="01 CreateUser" 
-		  description="Создаем пользователя и делаем screenshot, snapshot, для Бизнес репорта" 
+		  description="Create user and save screenshot, snapshot, for business report" 
 		  tags="wordpress, webelement, navigate, field, button, checkbox, screenshot, snapshot" >
-			
-		<navigate to="http://xml2selenium.com/demowp/"/>
-		<webelement xpath="//*[@id='meta-2']//a[@href='http://xml2selenium.com/demowp/wp-login.php']" action="click"/>
-		<pause time="1000"/>
-		
-		<field id="user_login" textToType="admin"/>
-		<field id="user_pass" textToType="S|Q0:Vvo3O5C2k5"/>
-		<button id="wp-submit"/>
-		<pause time="1000"/>
 		
 		<button xpath="//*[@id='menu-users']//div[@class='wp-menu-name']"/>
 		<button xpath="//*[@id='wpbody']//a[@class='add-new-h2']"/>
-		<pause time="3000"/>
+		
 		
 		<field id="user_login" textToType="a_tester"/>
 		<field id="email" textToType="userjazzteam@gmail.com"/>
@@ -28,30 +28,15 @@
 		<field id="pass2" textToType="22232223"/> 
 		
 		<checkbox id="send_password" action="click"/>
-		
 		<button id="createusersub"/>
 		
 		<screenshot/>
 		<snapshot/>		
-		
-		<!-- logout -->
-		<webelement xpath="//a[@title='My Account']" action="mouseMove"/>
-		<webelement xpath="//li[@id='wp-admin-bar-logout']/a" action="isExists"/>
-		<webelement xpath="//li[@id='wp-admin-bar-logout']/a" action="click"/>
-		<webelement id="login" action="isExists"/>
 	</test>	 
 	
 	<test coverage="100" name="02 DeleteUser" 
-		  description="Удаляем пользователя и делаем screenshot, snapshot, для Бизнес репорта" 
+		  description="Delete user and save screenshot, snapshot for business report" 
 		  tags="navigate, field, button, webelement, checkbox, screenshot, snapshot, radio" >
-		<navigate to="http://xml2selenium.com/demowp/"/>
-		<webelement xpath="//*[@id='meta-2']//a[@href='http://xml2selenium.com/demowp/wp-login.php']" action="click"/>
-		<pause time="1000"/>
-		
-		<field id="user_login" textToType="admin"/>
-		<field id="user_pass" textToType="S|Q0:Vvo3O5C2k5"/>
-		<button id="wp-submit"/>
-		<pause time="1000"/>
 		
 		<button xpath="//*[@id='menu-users']//div[@class='wp-menu-name']"/>
 		
@@ -61,15 +46,15 @@
 		
 		<radio id="delete_option0" action="click"/>
 		<button id="submit"/>
-		<pause time="2000"/>
 		
 		<screenshot/>
 		<snapshot/>		
-		
+		  
+	</test>
+	<after>
 		<!-- logout -->
-		<webelement xpath="//a[@title='My Account']" action="mouseMove"/>
-		<webelement xpath="//li[@id='wp-admin-bar-logout']/a" action="isExists"/>
-		<webelement xpath="//li[@id='wp-admin-bar-logout']/a" action="click"/>
-		<webelement id="login" action="isExists"/>    
-	</test> 
+		<pause time="3000"/>
+		<navigate to="http://xml2selenium.com/demowp/wp-login.php?loggedout=true"/>
+		<webelement id="login" action="isExists"/>
+	</after>	  
 </testcase>	

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testcase name="текст из title" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		  description="Взять текст из title" 	
-		  tags="Intermediate, базовые задачи, title">
+		  description="Take text from title" 	
+		  tags="Intermediate, base tasks, title">
 		  
-	<test coverage="100" name="Текст из title" 
-		  description="С помощью JavaScript берем текст из title и помещаем его в переменную. Сравниваем ожидаемый результат с фактическим." 
+	<test coverage="100" name="Text from title" 
+		  description="Take text from title and move it into variable using JavaScript. Aompare actual and expected results." 
 		  tags="navigate, script, javascript, variable, assert" >
 		
 		<navigate to="http://localhost:${jetty.port}/test/test/index.htm"/>

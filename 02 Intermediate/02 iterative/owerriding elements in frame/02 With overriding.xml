@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testcase name="С переопределением" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		  description="Заполняем поля с переопределением " 	
-		  tags="Intermediate, итеративные, переопределение">
+<testcase name="With overriding" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  description="Fill fields with overriding" 	
+		  tags="Intermediate, iterative, overriding">
 		  
 	<import resource="ImportFile.xml" name="import"/>	  
 		  
 	<test coverage="100" name="01 Ivanov" 
-		  description="В предыдущем тесткейсе в поле логин вводилось Ivanov, теперь NotIvanov " 
+		  description="In previous test case we printed login 'Ivanov', now we print 'NotIvanov'" 
 		  tags="field" >
 		<navigate to="http://localhost:${jetty.port}/test/test/index.htm"/>
 				
@@ -16,7 +16,7 @@
 	</test>
 	
 	<test coverage="100" name="02 Petrov" 
-		  description="В предыдущем тесткейсе в поле логин вводилось Petrov, теперь NotPetrov " 
+		  description="In previous test case we printed login 'Petrov', now we print 'NotPetrov'" 
 		  tags="field" >
 		<navigate to="http://localhost:${jetty.port}/test/test/index.htm"/>
 		
@@ -26,7 +26,7 @@
 	</test>
 	
 	<test coverage="100" name="03 Sidorov" 
-		  description="В предыдущем тесткейсе в поле логин вводилось Sidorov, теперь NotSidorov " 
+		  description="In previous test case we printed login 'Sidorov', now we print 'NotSidorov'" 
 		  tags="field, ref, frame" >
 		<navigate to="http://localhost:${jetty.port}/test/test/index.htm"/>
 		

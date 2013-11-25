@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testcase name="без использования property" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		  description="В тестах дублируется url" 
-		  tags="Basic, итеративные">
+<testcase name="Without using property" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  description="Duplicate url in tests" 
+		  tags="Basic, iterative">
 		    
 	<test coverage="100" name="01 Test" 
-		  description="Проверить присутствие логотипа Google, и блока меню" 
+		  description="Check 'Google' logo and menu block" 
 	      tags="google.com, navigate, webelement, field">
 		
 		<navigate to="http://ru.wikipedia.org"/>
@@ -13,7 +13,7 @@
 	</test>	  
 	
 	<test coverage="100" name="02 Test" 
-		  description="Ввести текст 'selenium', и проверить, что текст присутствует на странице" 
+		  description="Enter text 'selenium', and check text exists on page" 
 	      tags="wikipedia, navigate, webelement, assert">
 		
 		<navigate to="http://ru.wikipedia.org"/>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testcase name="с использованием property" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		  description="В тестах url вынесен в property файл " 
-		  tags="Basic, итеративные, property">
+<testcase name="Using property" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  description="Url moved to property file" 
+		  tags="Basic, iterative, property">
 
 	<property resource="PropertyFile.property" name="property"/>
 	  
 	<test coverage="100" name="01 Test" 
-		  description="Проверить присутствие логотипа Google, и блока меню" 
+		  description="Check 'Google' logo and menu block" 
 	      tags="google.com, navigate, webelement, field">
 		
 		<navigate to="${property.url}"/>
@@ -15,7 +15,7 @@
 	</test>	  
 	
 	<test coverage="100" name="02 Test" 
-		  description="Ввести текст 'selenium', и проверить, что текст присутствует на странице" 
+		  description="Enter text 'selenium', and check text exists on page" 
 	      tags="wikipedia, navigate, webelement, assert">
 		
 		<navigate to="${property.url}"/>

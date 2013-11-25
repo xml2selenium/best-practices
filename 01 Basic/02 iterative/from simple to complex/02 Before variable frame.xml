@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testcase name="before, frame, variable" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		  description="В тесткейсе навигация на страницу вынесена в тег before, используются тег variable для обозначения переменной, и frame для вынесения повторяющихся кусков кода."  
-		  tags="Basic, итеративные, от простого к сложному, before"> 
+		  description="Navigation to webpage placed in before tag, variable tag used for naming variable, frame tag used to aviod copy-pasting."  
+		  tags="Basic, iterative, from simple to complex, before"> 
 		  
 	<before>
 		<navigate to="http://localhost:${jetty.port}/test/test/registration.htm"/>
 	</before>	  
 		  
-	<test coverage="100" name="01 Простой тест" 
-		  description="Заполняем форму регистрации с использованием frame и variable. для Иванова"
+	<test coverage="100" name="01 Simple test" 
+		  description="Fill registration form using frame and variable. For 'Ivanov' user."
 		  tags="webelement, frame, variable">
 		  
 		<variable ref="userName" value="Ivanov"/>  
 		<variable ref="confirmPassword" value="password"/>
 				
-		<frame ref="заполнение формы регистрации">
+		<frame ref="Fill register form">
 			<field id="fieldName" textToType="${userName}"/>
 			<field id="fieldPassword" textToType="${confirmPassword}"/>
 			<field id="fieldConfirmPassword" textToType="${confirmPassword}"/>
@@ -22,7 +22,7 @@
 			<button id="regButton"/>
 		</frame>
 	
-		<frame ref="проверка элементов после регистрации">
+		<frame ref="Check elements after registration">
 			<webelement xpath="//div[@id='menu']" action="isExists"/>
 			<webelement xpath="//div[@id='righter']" action="isExists"/>
 		</frame>
@@ -31,13 +31,13 @@
 		<webelement id="message" text="SUCCESS" action="isContainsText"/>
 	</test>	  
 	
-	<test coverage="100" name="02 Простой тест" 
-		  description="Заполняем форму регистрации с использованием frame и variable. для Петрова"
+	<test coverage="100" name="02 Simple test" 
+		  description="Fill registration form using frame and variable. For 'Petrov' user."
 		  tags="webelement, frame, variable">
 		<variable ref="confirmPassword" value="password"/>
 		<variable ref="userName" value="Petrov"/>  
 			
-		<frame ref="заполнение формы регистрации">
+		<frame ref="Fill register form">
 			<field id="fieldName" textToType="${userName}"/>
 			<field id="fieldPassword" textToType="${confirmPassword}"/>
 			<field id="fieldConfirmPassword" textToType="${confirmPassword}"/>
@@ -45,7 +45,7 @@
 			<button id="regButton"/>
 		</frame>
 		
-		<frame ref="проверка элементов после регистрации">
+		<frame ref="Check elements after registration">
 			<webelement xpath="//div[@id='menu']" action="isExists"/>
 			<webelement xpath="//div[@id='righter']" action="isExists"/>
 		</frame>

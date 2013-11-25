@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testcase xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	name="Работа с браузером" description="Базовые возможности работы с веб-браузером"
-	tags="Basic, базовые задачи">
+	name="Work with browser" description="Base tasks for working with browser"
+	tags="Basic">
 
 	<import name="tinymce" resource="tinymce/TinyMceTextPrint.xml" />
 	
-	<test coverage="100" name="01 Перейти на страницу"
-		description="Переходим на разные страницы и делаем скриншот и снапшот"
+	<test coverage="100" name="01 Navigate to webpage"
+		description="Navigate to different pages, make screenshots and snapshots"
 		tags="navigate, screenshot, snapshot">
 		<navigate to="http://localhost:${jetty.port}/test/test/registration.htm" />
 		<screenshot />
@@ -15,23 +15,19 @@
 		<screenshot />
 		<snapshot />
 	</test>
-		  
-	<test coverage="100" name="02 Работа с несколькими окнми" 
-		  description="Создаем страничку, открываем демонстрационную страничку, и с помощью тега window переключаемся между ними" 
+	<property name="logpass" resource="../property/logPass.property" />	  	  
+	<test coverage="100" name="02 Working with several browser windows" 
+		  description="Create page, open demo page, switch between them using window tag" 
 		  tags="window, wordpress" >
 		
-		<!-- wordpress -->
-		<navigate to="http://xml2selenium.com/demowp/"/>
-		<webelement xpath="//*[@id='meta-2']//a[@href='http://xml2selenium.com/demowp/wp-login.php']" action="click"/>
-		<pause time="1000"/>
-		
-		<field id="user_login" textToType="admin"/>
-		<field id="user_pass" textToType="S|Q0:Vvo3O5C2k5"/>
+		<!-- login -->
+		<navigate to="http://xml2selenium.com/demowp/wp-login.php"/>
+		<field id="user_login" textToType="${logpass.loginWP}"/>
+		<field id="user_pass" textToType="${logpass.passwordWP}"/>
 		<button id="wp-submit"/>
 		
 		<button xpath="//div[contains(text(), 'Pages')]"/>
 		<button xpath="//*[@id='wpbody']//a[@class='add-new-h2']"/>
-		<pause time="3000"/>
 		
 		<field id="title-prompt-text" textToType="Page for window"/>
 		
@@ -40,8 +36,7 @@
 			<variable ref="text" value="Test page! :)" />
 			<variable ref="instance" value="content" />
 		</frame>	
-		<pause time="3000"/>
-		
+		<pause time="10000"/>
 		<button id="publish"/>
 		<window action="getCurrentWindow" ref="pageAdmin"/>
 		
@@ -58,14 +53,12 @@
 		<window action="closeCurrentAndGoToWindow" where="pageAdmin"/>
 		<window action="goToWindow" where="pageAdmin"/>
 		
-		<pause time="3000"/>
 		<webelement xpath="//tbody[@id='the-list']/tr/td[@class='post-title page-title column-title']//a[contains(text(), 'Page for window')]" 
 					action="isNotExists"/>
 					
 		<!-- logout -->
-		<webelement xpath="//a[@title='My Account']" action="mouseMove"/>
-		<webelement xpath="//li[@id='wp-admin-bar-logout']/a" action="isExists"/>
-		<webelement xpath="//li[@id='wp-admin-bar-logout']/a" action="click"/>
-		<webelement id="login" action="isExists"/>    
+		<navigate to="http://xml2selenium.com/demowp/wp-login.php?loggedout=true"/>
+		<webelement id="login" action="isExists"/>
+		
 	</test>	  
 </testcase>	

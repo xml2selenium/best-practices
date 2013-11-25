@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testcase name="элементы Ajax" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		  tags="Basic, фичи продукта" description="Работа с элементами Ajax">
+<testcase name="Ajax elements" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  tags="Basic, product features" description="Working with Ajax elements">
 		  
 	<test coverage="100" name="01 Test" 
-		  description="Проверка элемента, который появляется на странице через какой-то промежуток времени, без перезагрузки страницы." 
+		  description="Check element which appears on webpage in a some time without page reloading." 
 		  tags="navigate, webelement, button, defaultdelay, ajax, javascript">
 		<navigate to="http://localhost:${jetty.port}/test/test/comments.htm"/>
 		

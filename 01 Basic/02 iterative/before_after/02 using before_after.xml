@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testcase name="c использованием before_after" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		  description="Данные для открытия страницы, ввода логина и пароля и подтверждения введенных данных, заносятся в тег before и выполняются перед каждым тестом. Данные для разлогирования заносятся в тег after и выполняются после каждого теста " 
-		  tags="Basic, итеративные, before/after">
+<testcase name="Using before_after" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  description="Actions for opening page, entering login and password, confirmation of entered data palced to before tag and executed before each teest started. Actions for logout placed in after tag end executed after each test finished." 
+		  tags="Basic, iterative, before/after">
 
 	<before>
 		<navigate to="http://localhost:${jetty.port}/test/test/registration.htm"/>
@@ -12,23 +12,23 @@
 		<button id="submit"/>
 	</before>
 		  
-	<test coverage="100" name="01 Проверка блока menu" description="Переходим на страницу регистрации, вводим логин и пароль, и проверяем присутствие блока menu. Разлогинились" 
+	<test coverage="100" name="01 Check menu block" description="Navigate to register page, enter login and password check menu block exists. Logout." 
 	      tags="webelement">
 		
 		<webelement id="menu" action="isExists"/>
 		
 	</test>	  
 	
-	<test coverage="100" name="02 Проверка блока form" 
-	      description="Переходим на страницу регистрации, вводим логин и пароль, и проверяем присутствие блока form. Разлогинились"
+	<test coverage="100" name="02 Check form block" 
+	      description="Navigate to register page, enter login and password check form block exists. Logout."
 	      tags="webelement">
 		
 		<webelement xpath="//*[@id='mainBody']//form" action="isExists"/>
 		
 	</test>
 	
-	<test coverage="100" name="03 Проверка блока footer" 
-	      description="Переходим на страницу регистрации, вводим логин и пароль, и проверяем присутствие блока footer. Разлогинились"
+	<test coverage="100" name="03 Check footer" 
+	      description="Navigate to register page, enter login and password, check footer blobk exists. Logout."
 	      tags="webelement">
 		
 		<webelement id="footer" action="isExists"/>

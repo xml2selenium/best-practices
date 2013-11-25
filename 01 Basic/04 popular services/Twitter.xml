@@ -1,40 +1,25 @@
-<<<<<<< .mine
-&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;testcase name="twitter" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		  description="Работа в twitter [при частом запуске тесты  могут падать, так как твиттер начинает предлагать ввести капчу]" 	
-		  tags="Basic, работа в twiiter"&gt;
-		  
-	&lt;test coverage="100" name="01 Background" 
-		  description="Устанавляваем и меняем фон страницы" 
-		  tags="twitter, navigate, webelement, field, button, pause" &gt;
-		&lt;navigate to="http://twitter.com"/&gt;
-		
-		&lt;field id="signin-email" textToType="userjazzteam@gmail.com"/&gt;
-		&lt;field id="signin-password" textToType="9xANjIXML8"/&gt;
-		&lt;button xpath="//div[@id='front-container']//td[@class='flex-table-secondary']/button[@type='submit']"/&gt;
-=======
 <?xml version="1.0" encoding="UTF-8"?>
 <testcase name="twitter" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           description="WARNING! this service have CAPTCHA."
           tags="Basic,twitter">
 
     <import resource="ImportFile for twitter.xml" name="twitter"/>
-
+	<property name="logpass" resource="../property/logPass.property" />
+	
     <!-- before each run of the test performed login -->
     <before>
         <video action="start"/>
         <!-- go to twitter.com -->
         <navigate to="http://twitter.com"/>
         <!-- write text "login" in text field -->
-        <field id="signin-email" textToType="userjazzteam@gmail.com"/>
+        <field id="signin-email" textToType="${logpass.loginTwitter}"/>
         <!-- write text "password" in text field -->
-        <field id="signin-password" textToType="9xANjIXML8"/>
+        <field id="signin-password" textToType="${logpass.passwordTwitter}"/>
         <!-- press the button to log in -->
         <screenshot/>
         <button xpath="//div[@id='front-container']//td[@class='flex-table-secondary']/button[@type='submit']"/>
         <video action="stop"/>
     </before>
-
 
     <test coverage="100" name="01 Background"
           description="change design on twitter"
@@ -45,18 +30,7 @@
         <frame extends="twitter:changeTheme">
         	<variable ref="numberTheme" value="theme2"/>
         </frame>
->>>>>>> .r6030
         
-<<<<<<< .mine
-        &lt;!-- укстанавляваем фон страницы --&gt;
-        &lt;button id="user-dropdown-toggle"/&gt;
-        &lt;webelement xpath="//a[@data-nav='settings']" action="click"/&gt;
-        &lt;pause time="2000"/&gt;
-        &lt;webelement xpath="//a[@data-nav='design']" action="click"/&gt;
-        &lt;webelement xpath="//img[@src='/images/themes/theme14/swatch.gif']" action="click"/&gt;
-        &lt;button id="settings_save"/&gt;
-        &lt;pause time="5000"/&gt;
-=======
         <screenshot/>
         <snapshot/>
 
@@ -64,35 +38,13 @@
         <frame extends="twitter:changeTheme">
         	<variable ref="numberTheme" value="theme5"/>
         </frame>
->>>>>>> .r6030
         
-<<<<<<< .mine
-        &lt;!-- меняем фон страницы на предыдуущий--&gt;
-        &lt;button id="user-dropdown-toggle"/&gt;
-        &lt;webelement xpath="//a[@data-nav='settings']" action="click"/&gt;
-        &lt;pause time="2000"/&gt;
-        &lt;webelement xpath="//a[@data-nav='design']" action="click"/&gt;
-        &lt;webelement xpath="//img[@src='/images/themes/theme1/swatch.gif']" action="click"/&gt;
-        &lt;button id="settings_save"/&gt;
-=======
 		<screenshot/>
         <snapshot/>
->>>>>>> .r6030
         
-<<<<<<< .mine
-        &lt;!-- logout --&gt;
-        &lt;webelement id="user-dropdown-toggle" action="click"/&gt;
-		&lt;webelement id="signout-button" action="click"/&gt;
-	&lt;/test&gt;	 
-	
-	&lt;test coverage="100" name="02 Message" 
-		  description="Создаем 2 твита, один помечаем как favorites. Удаляем твиты" 
-		  tags="twitter, navigate, webelement, field, button, pause" &gt;
-		&lt;navigate to="http://twitter.com"/&gt;
-=======
         <video action="stop"/>
     </test>
-
+    
     <test coverage="100" name="02 Message"
           description="Create, remove, twit. Check twit on favorite."
           tags="twitter, navigate, webelement, field, button, pause">
@@ -118,20 +70,19 @@
         </frame>
         <screenshot/>
         <snapshot/>
->>>>>>> .r6030
 		
-<<<<<<< .mine
-		&lt;field id="signin-email" textToType="userjazzteam@gmail.com"/&gt;
-		&lt;field id="signin-password" textToType="9xANjIXML8"/&gt;
-		&lt;button xpath="//div[@id='front-container']//td[@class='flex-table-secondary']/button[@type='submit']"/&gt;
-        &lt;pause time="2000"/&gt;
-=======
 		<!-- select second tweet how  favorite -->
         <frame extends="twitter:selectFavoriteTweet">
         	<variable ref="numberTwit" value="2"/> 
         </frame>
 		
+		<button xpath="//a[@title='Me']"/>
+        <pause time="2000"/>
+		
         <!-- check existing first favorite tweet -->
+        <webelement xpath="//a[@data-nav='favorites']" action="click"/>
+        <pause time="2000"/>
+        
         <frame extends="twitter:checkFavoriteTweets">
         	<variable ref="numberTwit" value="1"/>
         </frame>
@@ -142,6 +93,9 @@
         </frame>
 		
         <!-- delete first tweet -->
+        <webelement xpath="//div[@class='component']//a[@data-nav='profile']" action="click"/>
+        <pause time="2000"/>
+        
         <frame extends="twitter:deleteTweet">
         	<variable ref="numberTwit" value="1"/>
         </frame>
@@ -152,67 +106,13 @@
         <frame extends="twitter:deleteTweet">
         	<variable ref="numberTwit" value="1"/>
         </frame>
->>>>>>> .r6030
         
-<<<<<<< .mine
-        &lt;!-- создаем первый твит --&gt;
-        &lt;button id="global-new-tweet-button"/&gt;
-        &lt;field id="tweet-box-global" textToType="Hello, JazzTeam! This is DimaX"/&gt;
-        
-        &lt;button xpath="//div[@class='modal-content']//span[contains(text(), 'Tweet')]"/&gt;
-        &lt;pause time="2000"/&gt;
-=======
         <video action="stop"/>
     </test>
 
     <after>
         <video action="start"/>
         <pause time="2000"/>
->>>>>>> .r6030
-<<<<<<< .mine
-        
-        &lt;!-- создаем второй твит --&gt;
-        &lt;button id="global-new-tweet-button"/&gt;
-        &lt;field id="tweet-box-global" textToType="Hello, JazzTeam! This is AlexP"/&gt;
-        
-        &lt;button xpath="//div[@class='modal-content']//span[contains(text(), 'Tweet')]"/&gt;
-        &lt;pause time="2000"/&gt; 
-        
-        &lt;!-- отмечаем один твит, как favorites --&gt;
-        &lt;webelement xpath="//ol[@id='stream-items-id']/li[1]" action="click"/&gt;
-        &lt;pause time="2000"/&gt;
-        &lt;webelement xpath="//li[1]//div[@class='stream-item-footer']" action="mouseMove"/&gt;
-        &lt;webelement xpath="//li[1]//div[@class='stream-item-footer']//a[@class='with-icn favorite js-tooltip']" action="click"/&gt;
-        &lt;button xpath="//a[@title='Me']"/&gt;
-        &lt;pause time="2000"/&gt;
-        &lt;webelement xpath="//a[@data-nav='favorites']" action="click"/&gt;
-        &lt;webelement xpath="//ol[@id='stream-items-id']/li[1]" action="isExists"/&gt;
-        &lt;pause time="2000"/&gt;
-        
-        &lt;webelement xpath="//div[@class='component']//a[@data-nav='profile']" action="click"/&gt;
-        
-        &lt;!-- удаляем первый твит --&gt;
-        &lt;webelement xpath="//li[1]//div[@class='stream-item-footer']" action="mouseMove"/&gt;
-        &lt;webelement xpath="//li[1]//div[@class='stream-item-footer']//a[@class='with-icn js-action-del js-tooltip']" action="click"/&gt;
-        &lt;button xpath="//button[@class='btn primary-btn delete-action']"/&gt;
-        &lt;pause time="2000"/&gt;
-        
-        &lt;!-- удаляем второй твит твит --&gt;
-        &lt;webelement xpath="//li[1]//div[@class='stream-item-footer']" action="mouseMove"/&gt;
-        &lt;webelement xpath="//li[1]//div[@class='stream-item-footer']//a[@class='with-icn js-action-del js-tooltip']" action="click"/&gt;
-        &lt;button xpath="//button[@class='btn primary-btn delete-action']"/&gt;
-        &lt;pause time="2000"/&gt;
-        
-=======
->>>>>>> .r6030
-<<<<<<< .mine
-        &lt;!-- logout --&gt;
-        &lt;webelement id="user-dropdown-toggle" action="click"/&gt;
-		&lt;webelement id="signout-button" action="click"/&gt; 
-	&lt;/test&gt;	 
-	
-&lt;/testcase&gt;	
-=======
         <!-- logout -->
         <webelement id="user-dropdown-toggle" action="click"/>
         <webelement id="signout-button" action="click"/>
@@ -222,4 +122,3 @@
     </after>
 
 </testcase>	
->>>>>>> .r6030

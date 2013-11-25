@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testcase name="regEx" xmlns="http://www.jazzteam.org/Routines" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		  description="Работа с регулярными выражениями" 	
-		  tags="Advanced, базовые задачи, регулярные выражения">
+		  description="Working with regular expressions" 	
+		  tags="Advanced, base tasks, regular expressions">
 		  
-	<test coverage="100" name="01 Телефон" 
-		  description="Проверить, что на странице контактов, телефон соответствует маске" 
-		  tags="navigate, webelemen, assert, groovy, java.lang.String.matches()" >
+	<test coverage="100" name="01 Phone number" 
+		  description="Check that phone matches mask on contacts page" 
+		  tags="navigate, webelement, assert, groovy, java.lang.String.matches()" >
 		
 		<navigate to="http://localhost:${jetty.port}/test/test/ourContacts.htm"/>
 		<webelement id='phone' action="getText" returnValueName="phone"/>
@@ -13,8 +13,8 @@
 		<assert action="isTrue" first="${(phone.matches('\\(\\+\\d+\\s\\d+\\)\\s\\d+\\-\\d+\\-\\d+')).toString()}"/>
 	</test>
 		  
-	<test coverage="100" name="02 Факс" 
-		  description="Проверить, что на странице контактов факс соответствует маске" 
+	<test coverage="100" name="02 Fax number" 
+		  description="Check that fax matches mask on contacts page" 
 		  tags="navigate, webelemen, assert, groovy, java.lang.String.matches()" >
 		
 		<navigate to="http://localhost:${jetty.port}/test/test/ourContacts.htm"/>
